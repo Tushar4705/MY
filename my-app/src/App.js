@@ -1,7 +1,7 @@
 import { Component } from 'react'; //for implementation of the component class
 import './App.css';
 import Card from './Components/CardComponent/Card.CardComponent.js'
-import SearchBox from './Components/SearchBox/SearchBox.Components';
+import SearchBox from './Components/SearchBox/SearchBox.Components.js';
 
 // function () {        instade of using functions we are using a class
 class App extends Component{
@@ -36,8 +36,7 @@ class App extends Component{
     const searchField = event.target.value.toLowerCase();
     this.setState(()=>{
       return{searchField};
-    }
-            )
+    })
   }
 
 
@@ -51,6 +50,7 @@ class App extends Component{
 
     const {monstar, searchField} = this.state;
     const {onSearchChange} = this;
+
     const filteredMonstars = monstar.filter((monstar)=> {
       return monstar.name.toLowerCase().includes(searchField);
       });
@@ -58,15 +58,29 @@ class App extends Component{
     return (
       <div className="App">
         <header className="App-header">
-        <SearchBox/>
-          <input className='App__searchBox' type='search' placeholder='Search Monstar' onChange={(event)=>{onSearchChange(event)}}/>
-          <Card monstar = {filteredMonstars}/>
+        <SearchBox onChageHandler = {onSearchChange} />
+
+
+
+
+        
+        {/* <input 
+          className='App__searchBox'
+          type='search' 
+          placeholder='Search Monstar' 
+          onChange={onSearchChange}
+       /> */}
+
+
+
+
+        <Card monstar = {filteredMonstars}/>
 
 
 
 
 
-              {/* {filteredMonstars.map((monstar) => {return (
+          {/* {filteredMonstars.map((monstar) => {return (
             // <div key={monstar.id}>
             //         <h1> 
             //           {monstar.name}
